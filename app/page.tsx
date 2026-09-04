@@ -23,7 +23,7 @@ export default function Home() {
 
       <main className="max-w-6xl mx-auto p-6 space-y-6">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[#7A6B5D] mb-1">CORPUS ÉPIGRAPHIQUE • ARIÈGE</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#7A6B5D] mb-1">CORPUS ÉPIGRAPHIQUE • Tarn-et-Garonne</p>
           <div className="flex items-center justify-between">
             <h2 className="text-3xl font-bold tracking-tight text-[#2C221E]">Archives des graffitis de la Grotte Bernadou</h2>
             <Link href="/saisie" className="flex items-center gap-2 px-4 py-2 bg-[#8C4327] text-white rounded-lg font-medium shadow-sm">
