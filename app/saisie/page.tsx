@@ -3,6 +3,9 @@
 import Link from "next/link"
 
 export default function SaisiePage() {
+  // Remplace l'URL ci-dessous par le lien de ton dossier Google Drive
+  const googleDriveFolderUrl = "https://drive.google.com/drive/folders/12UC8Uo3hQouGtZAjpN564lR_gXHtCuSP?usp=sharing"
+
   return (
     <div className="min-h-screen bg-[#F3F0E6] p-4 md:p-8 text-[#2C221E]">
       <div className="max-w-2xl mx-auto space-y-6">
@@ -41,20 +44,27 @@ export default function SaisiePage() {
             </select>
           </div>
 
-          {/* Zone de téléchargement de documents et photos */}
-          <div className="border-2 border-dashed border-[#D8C7B3] p-4 rounded-xl text-center bg-white/50 space-y-2">
-            <label className="block text-sm font-medium text-[#2C221E]">
-              Joindre des photos ou documents d'archives
-            </label>
-            <input 
-              type="file" 
-              multiple 
-              accept="image/*,.pdf,.doc,.docx"
-              className="text-sm text-[#7A6B5D] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#8C4327] file:text-white hover:file:bg-[#73351E] cursor-pointer"
-            />
-            <p className="text-xs text-[#7A6B5D]">
-              Formats acceptés : JPG, PNG, PDF, DOCX (Clichés in situ, scans de notes historiques, croquis)
+          {/* Bloc d'accès direct au Google Drive */}
+          <div className="border border-[#D8C7B3] p-4 rounded-xl bg-white space-y-2 text-center">
+            <p className="text-sm font-medium text-[#2C221E]">
+              Stockage des photos HD & documents d'archives
             </p>
+            <p className="text-xs text-[#7A6B5D]">
+              Dépose directement tes clichés in situ et scans dans ton espace Google Drive dédié.
+            </p>
+            <a 
+              href={googleDriveFolderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-2 px-4 py-2 bg-[#2C221E] text-white text-sm rounded-lg hover:bg-black transition-colors"
+            >
+              📁 Ouvrir le dossier Google Drive
+            </a>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Lien de la photo / document (optionnel)</label>
+            <input type="url" placeholder="Colle le lien Google Drive du fichier ici..." className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm" />
           </div>
 
           <div>
@@ -63,7 +73,7 @@ export default function SaisiePage() {
           </div>
 
           <button type="submit" className="w-full bg-[#8C4327] hover:bg-[#73351E] text-white py-3 rounded-lg font-medium shadow-sm transition-colors">
-            Enregistrer le relevé et les fichiers
+            Enregistrer le relevé
           </button>
         </form>
       </div>
