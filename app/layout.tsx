@@ -1,4 +1,3 @@
-import "./globals.css"
 
 export const metadata = {
   title: "Archives des graffitis de la Grotte Bernadou",
