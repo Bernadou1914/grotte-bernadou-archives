@@ -57,19 +57,15 @@ export default function SaisiePage() {
           <form onSubmit={(e) => e.preventDefault()} className="bg-[#FAF7F0] p-6 rounded-b-xl border border-[#E3D7C5] space-y-5 shadow-sm">
             <h2 className="text-lg font-bold border-b border-[#D8C7B3] pb-2 text-[#8C4327]">Identificateurs & Relevé</h2>
             
-    <div>
-      <label className="block text-xs font-semibold mb-1">Cavité / Grotte *</label>
-      <select className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm font-medium">
-        <option value="bernadou">Grotte de Bernadou</option>
-        <option value="mayriere">Grotte de Mayrière</option>
-        <option value="anglais">Grotte des Anglais</option>
-      </select>
-    </div>
+            <div>
+              <label className="block text-xs font-semibold mb-1">Cavité / Grotte *</label>
+              <select className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm font-medium">
+                <option value="bernadou">Grotte de Bernadou</option>
+                <option value="mayriere">Grotte de Mayrière</option>
+                <option value="anglais">Grotte des Anglais</option>
+              </select>
+            </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div>
-        <label className="block text-xs font-semibold mb-1">N° du graffiti *</label>
-        ...
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-semibold mb-1">N° du graffiti *</label>
@@ -105,25 +101,25 @@ export default function SaisiePage() {
             </div>
 
             <div>
-  <label className="block text-xs font-semibold mb-1">Releveur(s)</label>
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-md border border-[#D8C7B3]">
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Fillatre Delphine</label>
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Danielle Sanhard</label>
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Michel Sanhard</label>
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Magali Coustillères-Guais</label>
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Rémy Soulier</label>
-    <label className="flex items-center gap-1.5"><input type="checkbox" /> Camille Giquel</label>
-    <label className="flex items-center gap-1.5 col-span-2">
-      <input type="checkbox" />
-      <span>Autre :</span>
-      <input 
-        type="text" 
-        placeholder="Nom Prénom" 
-        className="ml-1 p-1 border border-[#D8C7B3] rounded text-xs w-full focus:outline-none focus:border-[#8C4327]" 
-      />
-    </label>
-  </div>
-</div>
+              <label className="block text-xs font-semibold mb-1">Releveur(s)</label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-md border border-[#D8C7B3]">
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Fillatre Delphine</label>
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Danielle Sanhard</label>
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Michel Sanhard</label>
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Magali Coustillères-Guais</label>
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Rémy Soulier</label>
+                <label className="flex items-center gap-1.5"><input type="checkbox" /> Camille Giquel</label>
+                <label className="flex items-center gap-1.5 col-span-2">
+                  <input type="checkbox" />
+                  <span>Autre :</span>
+                  <input 
+                    type="text" 
+                    placeholder="Nom Prénom" 
+                    className="ml-1 p-1 border border-[#D8C7B3] rounded text-xs w-full focus:outline-none focus:border-[#8C4327]" 
+                  />
+                </label>
+              </div>
+            </div>
 
             <h2 className="text-lg font-bold border-b border-[#D8C7B3] pb-2 text-[#8C4327] pt-2">Paroi & Technique d'exécution</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -131,7 +127,7 @@ export default function SaisiePage() {
                 <label className="block text-xs font-semibold mb-1">Couleur paroi</label>
                 <div className="space-y-1 text-xs bg-white p-2 rounded-md border border-[#D8C7B3]">
                   <label className="flex items-center gap-1.5"><input type="checkbox" /> Noire (fine couche)</label>
-                  <label className="flex items-center gap-1.5"><input type="checkbox" /> Calcaire (blanc</label>
+                  <label className="flex items-center gap-1.5"><input type="checkbox" /> Calcaire (blanc)</label>
                   <label className="flex items-center gap-1.5"><input type="checkbox" /> Ocre (argile)</label>
                   <label className="flex items-center gap-1.5"><input type="checkbox" /> Mixte</label>
                   <label className="flex items-center gap-1.5"><input type="checkbox" /> Composite</label>                
