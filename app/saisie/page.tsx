@@ -56,6 +56,20 @@ export default function SaisiePage() {
         {tab === "graffiti" && (
           <form onSubmit={(e) => e.preventDefault()} className="bg-[#FAF7F0] p-6 rounded-b-xl border border-[#E3D7C5] space-y-5 shadow-sm">
             <h2 className="text-lg font-bold border-b border-[#D8C7B3] pb-2 text-[#8C4327]">Identificateurs & Relevé</h2>
+            
+    <div>
+      <label className="block text-xs font-semibold mb-1">Cavité / Grotte *</label>
+      <select className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm font-medium">
+        <option value="bernadou">Grotte de Bernadou</option>
+        <option value="mayriere">Grotte de Mayrière</option>
+        <option value="anglais">Grotte des Anglais</option>
+      </select>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <label className="block text-xs font-semibold mb-1">N° du graffiti *</label>
+        ...
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-semibold mb-1">N° du graffiti *</label>
