@@ -27,7 +27,7 @@ export default function SaisiePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Localisation / Salle / Secteur</label>
+            <label className="block text-sm font-medium mb-1">Localisation / Secteur (Cazals - 82)</label>
             <input type="text" placeholder="ex: Galerie des Inscriptions — Paroi Est" className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white" />
           </div>
 
@@ -37,17 +37,33 @@ export default function SaisiePage() {
               <option>Graffiti / Inscription</option>
               <option>Panneau complet</option>
               <option>Tracé charbon / Signature</option>
-              <option>Autre vestige</option>
+              <option>Document d'archive / Scan</option>
             </select>
           </div>
 
+          {/* Zone de téléchargement de documents et photos */}
+          <div className="border-2 border-dashed border-[#D8C7B3] p-4 rounded-xl text-center bg-white/50 space-y-2">
+            <label className="block text-sm font-medium text-[#2C221E]">
+              Joindre des photos ou documents d'archives
+            </label>
+            <input 
+              type="file" 
+              multiple 
+              accept="image/*,.pdf,.doc,.docx"
+              className="text-sm text-[#7A6B5D] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#8C4327] file:text-white hover:file:bg-[#73351E] cursor-pointer"
+            />
+            <p className="text-xs text-[#7A6B5D]">
+              Formats acceptés : JPG, PNG, PDF, DOCX (Clichés in situ, scans de notes historiques, croquis)
+            </p>
+          </div>
+
           <div>
-            <label className="block text-sm font-medium mb-1">Description & Notes de terrain</label>
-            <textarea rows={4} placeholder="Dimensions, état de conservation, remarques..." className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white" />
+            <label className="block text-sm font-medium mb-1">Description & Notes historiques</label>
+            <textarea rows={4} placeholder="Dimensions, état de conservation, transcription, notes de recherche..." className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white" />
           </div>
 
           <button type="submit" className="w-full bg-[#8C4327] hover:bg-[#73351E] text-white py-3 rounded-lg font-medium shadow-sm transition-colors">
-            Enregistrer le relevé
+            Enregistrer le relevé et les fichiers
           </button>
         </form>
       </div>
