@@ -1,17 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowLeft, Save } from "lucide-react"
 
 export default function SaisiePage() {
   return (
     <div className="min-h-screen bg-[#FBF9F5] p-4 md:p-8">
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="flex items-center gap-4">
-          <Link href="/" className="p-2 hover:bg-black/5 rounded-lg transition-colors">
-            <ArrowLeft className="w-5 h-5" />
+          <Link href="/" className="p-2 hover:bg-black/5 rounded-lg text-xl font-bold">
+            ←
           </Link>
-          <h1 className="text-2xl font-bold text-[#3B2D22]">Saisie Terrain - Nouveau Relevé</h1>
+          <h1 className="text-2xl font-bold text-[#3B2D22]">Saisie Terrain — Nouveau Relevé</h1>
         </div>
 
         <form onSubmit={(e) => e.preventDefault()} className="bg-white p-6 rounded-xl border border-black/10 space-y-4 shadow-sm">
@@ -27,11 +26,11 @@ export default function SaisiePage() {
             <label className="block text-sm font-medium mb-1">Description & Notes</label>
             <textarea rows={4} placeholder="Observations..." className="w-full p-2 border rounded-md" />
           </div>
-          <button type="submit" className="w-full bg-[#8C4327] text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-[#72351E]">
-            <Save className="w-4 h-4" /> Enregistrer le relevé
+          <button type="submit" className="w-full bg-[#8C4327] text-white py-3 rounded-lg font-medium">
+            Enregistrer le relevé
           </button>
         </form>
       </div>
     </div>
   )
-} 
+}
