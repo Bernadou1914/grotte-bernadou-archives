@@ -90,14 +90,51 @@ export default function SaisiePage() {
                 <label className="block text-xs font-semibold mb-1">Graf. illisibles sur zone</label>
                 <input type="number" defaultValue="0" className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm" />
               </div>
-              <div>
-                <label className="block text-xs font-semibold mb-1">Nom sur la paroi</label>
-                <input type="text" placeholder="ex: DUPUY" className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm" />
+            </div>
+
+            {/* BLOCS AUTEURS MULTIPLES SUR LA PAROI (Jusqu'à 4) */}
+            <div className="p-4 bg-white rounded-md border border-[#D8C7B3] space-y-3">
+              <label className="block text-xs font-bold text-[#8C4327]">Auteurs / Inscriptions sur la paroi (jusqu'à 4)</label>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="p-2 bg-[#FAF7F0] rounded border border-[#E3D7C5]">
+                  <span className="text-[10px] font-bold text-[#8C4327] block mb-1">Nom & Prénom n°1</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="Nom 1" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                    <input type="text" placeholder="Prénom 1" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                  </div>
+                </div>
+
+                <div className="p-2 bg-[#FAF7F0] rounded border border-[#E3D7C5]">
+                  <span className="text-[10px] font-bold text-[#8C4327] block mb-1">Nom & Prénom n°2</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="Nom 2" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                    <input type="text" placeholder="Prénom 2" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                  </div>
+                </div>
+
+                <div className="p-2 bg-[#FAF7F0] rounded border border-[#E3D7C5]">
+                  <span className="text-[10px] font-bold text-[#8C4327] block mb-1">Nom & Prénom n°3</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="Nom 3" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                    <input type="text" placeholder="Prénom 3" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                  </div>
+                </div>
+
+                <div className="p-2 bg-[#FAF7F0] rounded border border-[#E3D7C5]">
+                  <span className="text-[10px] font-bold text-[#8C4327] block mb-1">Nom & Prénom n°4</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="Nom 4" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                    <input type="text" placeholder="Prénom 4" className="p-1.5 border border-[#D8C7B3] rounded bg-white text-xs" />
+                  </div>
+                </div>
               </div>
-              <div>
-                <label className="block text-xs font-semibold mb-1">Prénom sur la paroi</label>
-                <input type="text" placeholder="ex: Jean-Baptiste" className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm" />
-              </div>
+            </div>
+
+            {/* DATE SAISIE LIBRE SUR LA PAROI */}
+            <div>
+              <label className="block text-xs font-semibold mb-1">Date inscrite sur la paroi (texte libre)</label>
+              <input type="text" placeholder="ex: 4 août 1928 ou 1928" className="w-full p-2 border border-[#D8C7B3] rounded-md bg-white text-sm" />
             </div>
 
             <div>
