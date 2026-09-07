@@ -1,72 +1,131 @@
-"use client"
+'use client';
 
-import Link from "next/link"
+import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialisation de Supabase (utilise tes propres clés ou variables d'environnement)
+const SUPABASE_URL = "https://lsiibyjyodjkuiptbdmz.supabase.co";
+// Note: Pour une application en production, il est recommandé d'utiliser une clé anonyme (anon key) 
+// et de configurer les politiques RLS (Row Level Security) sur Supabase pour la lecture publique.
+const SUPABASE_ANON_KEY = "TA_CLE_ANON_OU_SERVICE_ROLE"; 
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default function Home() {
+  const [nom, setNom] = useState('');
+  const [prenom, setPrenom] = useState('');
+  const [resultats, setResultats] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [rechercheFaite, setRechercheFaite] = useState(false);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setRechercheFaite(true);
+
+    try {
+      let query = supabase.from('archives_cazals').select('*');
+
+      if (nom.trim() !== '') {
+        query = query.ilike('Nom', `%${nom.trim()}%`);
+      }
+      if (prenom.trim() !== '') {
+        query = query.ilike('Prénom', `%${prenom.trim()}%`);
+      }
+
+      const { data, error } = await query.limit(50);
+
+      if (error) {
+        console.error('Erreur lors de la recherche:', error);
+      } else {
+        setResultats(data || []);
+      }
+    } catch (err) {
+      console.error('Erreur:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#F0F4F8] p-4 md:p-12 text-[#5D5C61] font-sans leading-relaxed">
-      <div className="max-w-4xl mx-auto space-y-8">
-        
-        {/* En-tête du projet */}
-        <div className="bg-white p-6 md:p-8 rounded-2xl border border-[#7395AE]/30 shadow-sm space-y-3">
-          <div className="inline-block px-3 py-1 bg-[#379683]/10 text-[#379683] text-xs font-bold rounded-full uppercase tracking-wider">
-            Archive Spéléo-Épigraphique
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-[#557A95]">
-            Grottes de Bernadou, Mayrière & des Anglais
-          </h1>
-          <p className="text-sm md:text-base text-[#5D5C61]">
-            Système centralisé de relevé des graffitis, des panneaux et de prosopographie historique. 
-            Transition numérique pour l'inventaire et la recherche patrimoniale.
-          </p>
+    <main className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl font-bold text-gray-900">Archives de Cazals</h1>
+          <p className="mt-2 text-gray-600">Recherchez un ancêtre ou un habitant dans les recensements historiques.</p>
         </div>
 
-        {/* Grille des actions principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Carte Saisie Terrain */}
-          <div className="bg-white p-6 rounded-xl border border-[#7395AE]/30 shadow-sm flex flex-col justify-between space-y-4 hover:border-[#379683] transition-colors">
-            <div className="space-y-2">
-              <div className="w-10 h-10 rounded-lg bg-[#379683]/10 text-[#379683] flex items-center justify-center font-bold text-lg">
-                ✍️
+        {/* Formulaire de recherche */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
+          <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+              <input
+                type="text"
+                placeholder="Ex: Bernadou"
+                value={nom}
+                onChange={(e) => setNom(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
+              <input
+                type="text"
+                placeholder="Ex: Jean"
+                value={prenom}
+                onChange={(e) => setPrenom(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+            <div className="sm:col-span-2 flex justify-end mt-2">
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50"
+              >
+                {loading ? 'Recherche en cours...' : 'Rechercher'}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Résultats */}
+        {rechercheFaite && (
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-800">
+                Résultats de la recherche ({resultats.length})
+              </h2>
+            </div>
+            {resultats.length === 0 ? (
+              <div className="p-6 text-center text-gray-500">Aucun résultat trouvé.</div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200 text-sm">
+                  <thead className="bg-gray-50 text-gray-700">
+                    <tr>
+                      <th className="px-6 py-3 text-left font-medium">Nom</th>
+                      <th className="px-6 py-3 text-left font-medium">Prénom</th>
+                      <th className="px-6 py-3 text-left font-medium">Année</th>
+                      <th className="px-6 py-3 text-left font-medium">Lieu de naissance</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 text-gray-600">
+                    {resultats.map((row, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-gray-900">{row.Nom || '-'}</td>
+                        <td className="px-6 py-4">{row.Prénom || '-'}</td>
+                        <td className="px-6 py-4">{row.Année || '-'}</td>
+                        <td className="px-6 py-4">{row.lieu_naissance || '-'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <h2 className="text-xl font-bold text-[#557A95]">Saisie sur le terrain</h2>
-              <p className="text-xs text-[#5D5C61]">
-                Accéder aux fiches de saisie duales : Fiches Graffiti (avec multi-auteurs et date libre) et Fiches Panneau pour les différentes cavités.
-              </p>
-            </div>
-            <Link 
-              href="/saisie" 
-              className="w-full text-center py-2.5 px-4 bg-[#379683] hover:bg-[#2e7d6d] text-white text-sm font-bold rounded-lg transition-colors shadow-2xs"
-            >
-              Ouvrir le formulaire de saisie →
-            </Link>
+            )}
           </div>
-
-          {/* Carte Archives / Base (prochaine étape) */}
-          <div className="bg-white p-6 rounded-xl border border-[#7395AE]/30 shadow-sm flex flex-col justify-between space-y-4 opacity-90">
-            <div className="space-y-2">
-              <div className="w-10 h-10 rounded-lg bg-[#557A95]/10 text-[#557A95] flex items-center justify-center font-bold text-lg">
-                📂
-              </div>
-              <h2 className="text-xl font-bold text-[#557A95]">Documents & Individus</h2>
-              <p className="text-xs text-[#5D5C61]">
-                Section dédiée à la prosopographie : liaison entre les signatures pariétales et les archives historiques (bientôt disponible).
-              </p>
-            </div>
-            <div className="w-full text-center py-2.5 px-4 bg-[#F0F4F8] text-[#5D5C61] text-sm font-semibold rounded-lg border border-[#7395AE]/20 cursor-not-allowed">
-              Prochaine étape de développement
-            </div>
-          </div>
-
-        </div>
-
-        {/* Pied de page informatif */}
-        <div className="text-center text-xs text-[#5D5C61]/70 pt-4 border-t border-[#7395AE]/20">
-          Application sécurisée sur Vercel & Supabase — Données synchronisées en temps réel.
-        </div>
-
+        )}
       </div>
-    </div>
-  )
+    </main>
+  );
 }
