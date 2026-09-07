@@ -7,7 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 const SUPABASE_URL = "https://lsiibyjyodjkuiptbdmz.supabase.co";
 // Note: Pour une application en production, il est recommandé d'utiliser une clé anonyme (anon key) 
 // et de configurer les politiques RLS (Row Level Security) sur Supabase pour la lecture publique.
-const SUPABASE_ANON_KEY = "TA_CLE_ANON_OU_SERVICE_ROLE"; 
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzaWlieWp5b2Rqa3VpcHRiZG16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MjAxNjMsImV4cCI6MjEwNDA5NjE2M30.LDsYlDoMnrVd8Sfg401NbBi_uS6Qu3nuPw_FmJJyOpM"; 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default function Home() {
